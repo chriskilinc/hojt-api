@@ -14,12 +14,23 @@ variables:
   dockerRepo: 'chriskilinc'
 
 steps:
-# - script: docker build -f Dockerfile -t $(imageName) .
 - script: docker build -t $(imageName) ./hojt
   displayName: 'docker build'
+  
+- task: Docker@1
+  displayName: login
+  inputs:
+      azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+      azureContainerRegistry: $(azureContainerRegistry)
+      command: login
+
+
+# - script: docker build -f Dockerfile -t $(imageName) .
+# - script: docker build -t $(imageName) ./hojt
+#   displayName: 'docker build'
   
 # - script: docker login -u $(dockerId) -p $(dockerPassword)
 #   displayName: 'docker login'
 
-- script: docker push chriskilinc/$(imageName)
-  displayName: 'docker push'
+# - script: docker push chriskilinc/$(imageName)
+  # displayName: 'docker push'
