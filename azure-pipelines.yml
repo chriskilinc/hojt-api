@@ -21,7 +21,7 @@ steps:
 - task: Docker@1
   displayName: login
   inputs:
-    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistry)
     command: login
 
