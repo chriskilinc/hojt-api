@@ -16,6 +16,9 @@ steps:
 # - script: docker build -f Dockerfile -t $(imageName) .
 - script: docker build -t $(imageName) ./hojt
   displayName: 'docker build'
+  
 - script: docker login -u $(dockerId) -p $(dockerPassword)
   displayName: 'docker login'
+
 - script: docker push $(imageName)
+  displayName: 'docker push'
