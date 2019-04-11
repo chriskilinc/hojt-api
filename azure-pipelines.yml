@@ -22,7 +22,7 @@ steps:
   displayName: login
   inputs:
     # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-    azureContainerRegistry: $(azureContainerRegistry)
+    azureSubscriptionEndpoint: 'Visual Studio Professional (f9b15048-4520-4635-926a-b3f2a903ea61)'
     command: login
 
 - script: docker push $(dockerRepo)/$(imageName)
