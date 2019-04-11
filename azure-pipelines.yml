@@ -16,3 +16,6 @@ steps:
 # - script: docker build -f Dockerfile -t $(imageName) .
 - script: docker build -t $(imageName) ./hojt
   displayName: 'docker build'
+- script: docker login
+  displayName: 'docker login'
+- script: docker push chriskilinc/hojt
