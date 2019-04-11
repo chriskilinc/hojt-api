@@ -18,7 +18,7 @@ steps:
 - script: docker build -t $(imageName) ./hojt
   displayName: 'docker build'
   
-- script: docker login -u $(dockerId) -p $(dockerPassword)
+- script: docker login -u $(dockerId) -p \$(dockerPassword)
   displayName: 'docker login'
 
 - script: docker push $(dockerRepo)/$(imageName)
