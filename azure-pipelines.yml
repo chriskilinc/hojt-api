@@ -10,7 +10,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: '$(azureContainerRegistry)/hojt:$(build.buildId)'
+  imageName: 'hojt:$(build.buildId)'
   dockerRepo: 'chriskilinc'
 
 steps:
@@ -24,7 +24,13 @@ steps:
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistryEndpoint)
 
-# - script: docker tag $(imageName) $(azureContainerRegistry)/$(imageName)
+- script: docker images
+  displayName: 'docker images'
+
+- script: docker tag $(imageName) $(azureContainerRegistry)/$(imageName)
+
+- script: docker images
+  displayName: 'docker images'
 
 - script: docker push $(azureContainerRegistryEndpoint)/$(imageName)
   displayName: 'docker push $(azureContainerRegistryEndpoint)/$(imageName)'
@@ -34,5 +40,3 @@ steps:
 
 # - script: docker login -u $(dockerId) -p \$(dockerPassword)
 #   displayName: 'docker login'
-
-
