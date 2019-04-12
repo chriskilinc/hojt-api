@@ -24,10 +24,11 @@ steps:
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistry)
 
+- script: docker push $(dockerRepo)/$(imageName)
+  displayName: 'docker push'
+
 
 # - script: docker login -u $(dockerId) -p \$(dockerPassword)
-# - script: docker push $(dockerRepo)/$(imageName)
-#   displayName: 'docker push'
 #   displayName: 'docker login'
 
 
