@@ -24,7 +24,7 @@ steps:
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistry)
 
-- script: docker push $(dockerRepo)/$(imageName)
+- script: docker push $(azureContainerRegistry)/$(imageName)
   displayName: 'docker push'
 
 
