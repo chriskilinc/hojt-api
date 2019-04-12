@@ -22,7 +22,7 @@ steps:
   inputs:
     command: login
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-    azureContainerRegistry: $(azureContainerRegistry)
+    azureContainerRegistry: $(azureContainerRegistryEndpoint)
 
 - script: docker tag $(imageName) $(azureContainerRegistry)/$(imageName)
   displayName: 'docker tag'
