@@ -25,10 +25,10 @@ steps:
     azureContainerRegistry: $(azureContainerRegistryEndpoint)
 
 - script: docker push $(azureContainerRegistryEndpoint)/$(imageName)
-  displayName: 'docker push'
+  displayName: 'docker push $(azureContainerRegistryEndpoint)/$(imageName)'
 
 - script: docker rmi $(imageName)
-  displayName: 'docker remove image'
+  displayName: 'docker remove image $(imageName)'
 
 # - script: docker login -u $(dockerId) -p \$(dockerPassword)
 #   displayName: 'docker login'
