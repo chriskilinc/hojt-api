@@ -15,7 +15,7 @@ variables:
 
 steps:
 - script: docker build -t $(imageName) ./hojt
-  displayName: 'docker build'
+  displayName: 'docker build $(imageName)'
 
 - task: Docker@1
   displayName: Container registry login
@@ -23,6 +23,8 @@ steps:
     command: login
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistryEndpoint)
+
+- script: docker tag $(imageName) $(azureContainerRegistry)/$(imageName)
 
 - script: docker push $(azureContainerRegistryEndpoint)/$(imageName)
   displayName: 'docker push $(azureContainerRegistryEndpoint)/$(imageName)'
