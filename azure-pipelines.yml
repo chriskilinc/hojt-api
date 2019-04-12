@@ -14,23 +14,20 @@ variables:
   dockerRepo: 'chriskilinc'
 
 steps:
-# - script: docker build -f Dockerfile -t $(imageName) .
 - script: docker build -t $(imageName) ./hojt
   displayName: 'docker build'
 
 - task: Docker@1
-  displayName: login
+  displayName: Container registry login
   inputs:
-    # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-    azureSubscriptionEndpoint: 'Visual Studio Professional (f9b15048-4520-4635-926a-b3f2a903ea61)'
     command: login
-
-- script: docker push $(dockerRepo)/$(imageName)
-  displayName: 'docker push'
-
+    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureContainerRegistry: $(azureContainerRegistry)
 
 
 # - script: docker login -u $(dockerId) -p \$(dockerPassword)
+# - script: docker push $(dockerRepo)/$(imageName)
+#   displayName: 'docker push'
 #   displayName: 'docker login'
 
 
