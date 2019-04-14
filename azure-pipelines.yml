@@ -15,8 +15,19 @@ variables:
   dockerRepo: 'chriskilinc'
 
 steps:
-- script: docker build -t $(app) ./hojt
-  displayName: 'docker build $(app)'
+- script: docker build -t $(imageName) ./hojt
+  displayName: 'docker build $(imageName)'
+# hojt:id
+
+- script: docker images
+  displayName: 'docker images'
+
+- script: docker tag $(imageName) $(azureContainerRegistryEndpoint)/$(imageName)
+  displayName: docker build
+# hojt:x > registry.azurecr.io/hojt:x
+
+- script: docker images
+  displayName: 'docker images'
 
 - task: Docker@1
   displayName: Container registry login
@@ -25,19 +36,17 @@ steps:
     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistryEndpoint)
 
-- script: docker images
-  displayName: 'docker images'
-
-- script: docker tag $(app) $(azureContainerRegistryEndpoint)/$(imageName)
-
-- script: docker images
-  displayName: 'docker images'
-
 - script: docker push $(azureContainerRegistryEndpoint)/$(imageName)
-  displayName: 'docker push $(azureContainerRegistryEndpoint)/$(imageName)'
+  displayName: docker push 
 
 - script: docker rmi $(imageName)
   displayName: 'docker remove image $(imageName)'
+
+# - script: docker push $(azureContainerRegistryEndpoint)/$(imageName)
+#   displayName: 'docker push $(azureContainerRegistryEndpoint)/$(imageName)'
+
+# - script: docker rmi $(imageName)
+#   displayName: 'docker remove image $(imageName)'
 
 # - script: docker login -u $(dockerId) -p \$(dockerPassword)
 #   displayName: 'docker login'
