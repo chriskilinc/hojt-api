@@ -28,12 +28,12 @@ steps:
 - script: docker images
   displayName: 'docker images'
 
-- script: docker tag $(app) $(azureContainerRegistry)/$(imageName)
+- script: docker tag $(app) $(azureContainerRegistryEndpoint)/$(imageName)
 
 - script: docker images
   displayName: 'docker images'
 
-- script: docker push $(azureContainerRegistryEndpoint)/$(app)
+- script: docker push $(azureContainerRegistryEndpoint)/$(imageName)
   displayName: 'docker push $(azureContainerRegistryEndpoint)/$(imageName)'
 
 - script: docker rmi $(imageName)
