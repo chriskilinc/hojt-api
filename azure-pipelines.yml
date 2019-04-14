@@ -33,7 +33,7 @@ steps:
 - script: docker images
   displayName: 'docker images'
 
-- script: docker push $(azureContainerRegistryEndpoint)/$(imageName)
+- script: docker push $(azureContainerRegistryEndpoint)/$(app)
   displayName: 'docker push $(azureContainerRegistryEndpoint)/$(imageName)'
 
 - script: docker rmi $(imageName)
