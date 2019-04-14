@@ -10,7 +10,8 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'hojt:$(build.buildId)'
+  app: 'hojt'
+  imageName: '$(app):$(build.buildId)'
   dockerRepo: 'chriskilinc'
 
 steps:
@@ -27,7 +28,7 @@ steps:
 - script: docker images
   displayName: 'docker images'
 
-- script: docker tag $(imageName) $(azureContainerRegistry)/$(imageName)
+- script: docker tag $(app) $(azureContainerRegistry)/$(imageName)
 
 - script: docker images
   displayName: 'docker images'
