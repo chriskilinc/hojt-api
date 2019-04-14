@@ -15,8 +15,8 @@ variables:
   dockerRepo: 'chriskilinc'
 
 steps:
-- script: docker build -t $(imageName) ./hojt
-  displayName: 'docker build $(imageName)'
+- script: docker build -t $(app) ./hojt
+  displayName: 'docker build $(app)'
 
 - task: Docker@1
   displayName: Container registry login
