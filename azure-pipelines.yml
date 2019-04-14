@@ -17,14 +17,12 @@ variables:
 steps:
 - script: docker build -t $(imageName) ./hojt
   displayName: 'docker build $(imageName)'
-# hojt:id
 
 - script: docker images
   displayName: 'docker images'
 
 - script: docker tag $(imageName) $(azureContainerRegistryEndpoint)/$(imageName)
-  displayName: docker build
-# hojt:x > registry.azurecr.io/hojt:x
+  displayName: docker tag
 
 - script: docker images
   displayName: 'docker images'
@@ -42,11 +40,5 @@ steps:
 - script: docker rmi $(imageName)
   displayName: 'docker remove image $(imageName)'
 
-# - script: docker push $(azureContainerRegistryEndpoint)/$(imageName)
-#   displayName: 'docker push $(azureContainerRegistryEndpoint)/$(imageName)'
-
-# - script: docker rmi $(imageName)
-#   displayName: 'docker remove image $(imageName)'
-
-# - script: docker login -u $(dockerId) -p \$(dockerPassword)
-#   displayName: 'docker login'
+- script: docker images
+  displayName: 'docker images'
