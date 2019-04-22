@@ -12,20 +12,13 @@ pool:
 variables:
   app: 'hojt'
   imageName: '$(app):$(build.buildId)'
-  dockerRepo: 'chriskilinc'
 
 steps:
 - script: docker build -t $(imageName) ./hojt
   displayName: 'docker build $(imageName)'
 
-- script: docker images
-  displayName: 'docker images'
-
 - script: docker tag $(imageName) $(azureContainerRegistryEndpoint)/$(imageName)
   displayName: docker tag
-
-- script: docker images
-  displayName: 'docker images'
 
 - task: Docker@1
   displayName: Container registry login
